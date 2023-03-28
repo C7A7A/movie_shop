@@ -1,11 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { CategoryDropdown } from './components/CategoryDropdown';
+import { Movie } from './components/Movie';
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div class="container bg-cyan-100 mx-auto">
+      <CategoryDropdown />
+
+      <Movie 
+        title='Lśnienie'
+        category='Horror'
+        production_year='1999'
+        price='35'
+      />
+
+    </div>
   );
 }
 

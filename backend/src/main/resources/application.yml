@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: "movie shop"
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=movieshop;integratedSecurity=false;encrypt=false;trustServerCertificate=true;
+    username: sa
+    password: password
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
