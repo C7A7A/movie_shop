@@ -1,19 +1,10 @@
+import { StickyNavbar } from './components/StickyNavbar';
 import './App.css';
-import { CategoryDropdown } from './components/CategoryDropdown';
-import { Movie } from './components/Movie';
 
 function App() {
   return (
-    <div class="container bg-cyan-100 mx-auto">
-      <CategoryDropdown />
-
-      <Movie 
-        title='Lśnienie'
-        category='Horror'
-        production_year='1999'
-        price='35'
-      />
-
+    <div className="container bg-gray-200 mx-auto h-full">
+      <StickyNavbar />
     </div>
   );
 }
