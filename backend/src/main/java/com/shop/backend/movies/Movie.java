@@ -19,16 +19,18 @@ public class Movie {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    private String posterName;
     private Double price;
     @NotEmpty
     public Movie() {
 
     }
-    public Movie(String title, MovieCategory category, Integer productionYear, String description, Double price) {
+    public Movie(String title, MovieCategory category, Integer productionYear, String description, String posterName, Double price) {
         this.title = title;
         this.category = category;
         this.productionYear = productionYear;
         this.description = description;
+        this.posterName = posterName;
         this.price = price;
     }
 
@@ -62,6 +64,14 @@ public class Movie {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPosterName() {
+        return posterName;
+    }
+
+    public void setPosterName(String posterName) {
+        this.posterName = posterName;
     }
 
     public Double getPrice() {

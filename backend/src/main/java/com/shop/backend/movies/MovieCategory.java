@@ -5,5 +5,6 @@ public enum MovieCategory {
     HORROR,
     THRILLER,
     KOMEDIA,
-    ANIMACJA
+    ANIMACJA,
+    FANTASY
 }

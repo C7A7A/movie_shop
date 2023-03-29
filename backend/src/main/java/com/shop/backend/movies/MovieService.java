@@ -22,8 +22,8 @@ public class MovieService {
         return repository.findById(movieId).orElseThrow();
     }
 
-    public Movie createMovie(Movie movie) {
-        return repository.save(movie);
+    public List<Movie> createMovies(List<Movie> movies) {
+        return repository.saveAll(movies);
     }
 
     public void deleteMovie(Long movieId) {
