@@ -7,7 +7,7 @@ export const MovieList = () => {
   return (
     <>
       <div className="flex flex-col gap-4 w-full">
-        <Typography className="font-semibold text-4xl"> Filmy </Typography>
+        <Typography className="font-semibold text-black text-4xl"> Filmy </Typography>
         <hr />
         <CategoryDropdown />
         <div className="flex flex-row gap-10">

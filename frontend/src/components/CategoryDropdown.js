@@ -5,7 +5,7 @@ export const CategoryDropdown = () => {
 
   return (
     <div className="flex flex-row justify-start min-w-[30rem] w-5/12 items-center gap-2">
-      <label htmlFor="selectMovieCategory" className="w-1/2 font-medium text-xl"> Kategoria filmów: </label>
+      <label htmlFor="selectMovieCategory" className="w-1/2 font-medium text-xl text-black"> Kategoria filmów: </label>
       <Select id="selectMovieCategory" size="lg" color="purple" className="text-base">
           <Option selected> Wszystkie </Option>
           <Option> Dramat </Option>
