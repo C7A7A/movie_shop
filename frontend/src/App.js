@@ -1,6 +1,7 @@
 import { StickyNavbar } from './components/StickyNavbar';
 import './App.css';
 import { MovieList } from './components/MovieList';
+import { MovieDetails } from './components/MovieDetails';
 
 function App() {
   return (
