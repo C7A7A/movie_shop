@@ -1,5 +1,4 @@
-import { Card, Dialog, DialogHeader, DialogBody, Typography } from '@material-tailwind/react'
-import React, { useState } from 'react'
+import { Dialog, DialogHeader, DialogBody, Typography } from '@material-tailwind/react'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 
 export const MovieDetails = ({open, handleOpen, title, category,  production_year, price, poster, description}) => {
