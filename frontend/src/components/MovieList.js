@@ -1,40 +1,58 @@
 import { Typography } from '@material-tailwind/react'
-import React from 'react'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 import { CategoryDropdown } from './CategoryDropdown'
 import { Movie } from './Movie'
 
+const moviesUrl = "http://localhost:8080/api/movies"
+const headers = { 
+  headers: {
+    'Access-Control-Allow-Origin': '*'
+  } 
+}
+
 export const MovieList = () => {
+  const [movies, setMovies] = useState([])
+  const [displayMovies, setDisplayMovies] = useState([])
+
+  useEffect(() => {
+    axios.get(moviesUrl, headers).then((response) => {
+      setMovies(response.data)
+      setDisplayMovies(response.data)
+    })
+  }, [])
+  
+  const handleMovies = (category) => {
+    if (category === "WSZYSTKIE") {
+      setDisplayMovies(movies)
+    } else if (category !== "") {
+      let filteredMovies = movies.filter(movie => movie.category === category)
+      // console.log(filteredMovies)
+      setDisplayMovies(filteredMovies)
+    }
+  }
+
+  // console.log(movies)
+
+  const listMovies = displayMovies.map((movie, index) => {
+    return <Movie key={index}
+            title = {movie.title}
+            category = {movie.category.charAt(0) + movie.category.substring(1).toLowerCase()}
+            production_year = {movie.productionYear}
+            price = {movie.price}
+            poster = {movie.posterName}
+            description = {movie.description}
+          />
+  })
+
   return (
     <>
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-4 w-full h-full">
         <Typography className="font-semibold text-black text-4xl"> Filmy </Typography>
         <hr />
-        <CategoryDropdown />
-        <div className="flex flex-row gap-10">
-          <Movie 
-            title = "Lot nad Kukułczym Gniazdem"
-            category = "Dramat"
-            production_year = "1995"
-            price = "35"
-            poster = "lot_nad_kukulczym_gniazdem"
-            description = "Historia złodzieja, szulera i chuligana, który, by uniknąć więzienia, udaje niepoczytalność. Trafia do szpitala dla umysłowo chorych, gdzie twardą ręką rządzi siostra Ratched."
-          />
-          <Movie 
-            title = "Siedem"
-            category = "Thriller"
-            production_year = "1999"
-            price = "40"
-            poster = "siedem"
-            description = "Dwóch policjantów stara się złapać seryjnego mordercę wybierającego swoje ofiary według specjalnego klucza - siedmiu grzechów głównych."
-          />
-          <Movie 
-            title = "Lśnienie"
-            category = "Horror"
-            production_year = "2001"
-            price = "25"
-            poster = "lsnienie"
-            description = "Jack podejmuje pracę stróża odciętego od świata hotelu Overlook. Wkrótce idylla zamienia się w koszmar. "
-          />
+        <CategoryDropdown handleMovies={handleMovies} />
+        <div className="grid grid-cols-4 gap-4">
+          {listMovies}
         </div>
       </div>
     </>

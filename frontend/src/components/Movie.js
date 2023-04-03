@@ -14,6 +14,7 @@ export const Movie = ({title, category,  production_year, price, poster, descrip
     }
   }, [movieTitle])
   
+  // console.log(poster)
 
   return (
     <>
@@ -50,7 +51,7 @@ export const Movie = ({title, category,  production_year, price, poster, descrip
         </CardBody>
 
         <CardFooter className="pt-0">
-          <Button size="lg" fullWidth={true} className="bg-purple-700 shadow-none hover:shadow-none hover:bg-purple-800" >
+          <Button size="lg" fullWidth={true} className="bg-purple-700 shadow-none hover:shadow-none hover:bg-purple-800"  >
             Dodaj do koszyka
           </Button>
         </CardFooter>

@@ -12,11 +12,9 @@ export const StickyNavbar = ({amount=0}) => {
         <div className="flex items-center justify-between text-blue-gray-900">
 
           <Link to={'/'}>
-            <Typography className="mr-4 cursor-pointer py-1.5 hover:text-purple-700">
-              <p className="flex flex-row font-bold text-xl gap-2">
-                <FilmIcon className="w-7 h-7" /> 
-                Cinema Central
-              </p>
+            <Typography className="flex flex-row font-bold text-xl gap-2 mr-4 cursor-pointer py-1.5 hover:text-purple-700">
+              <FilmIcon className="w-7 h-7" /> 
+              Cinema Central
             </Typography>
           </Link>
             

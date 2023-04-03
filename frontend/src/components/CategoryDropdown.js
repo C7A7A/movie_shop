@@ -1,20 +1,24 @@
 import React from 'react'
-import { Select, Option } from "@material-tailwind/react"
 
-export const CategoryDropdown = () => {
+export const CategoryDropdown = ({handleMovies}) => {
+
+  const onChange = (event) => {
+    const category = event.target.value
+    handleMovies(category.toUpperCase())
+  }
 
   return (
     <div className="flex flex-row justify-start min-w-[30rem] w-5/12 items-center gap-2">
       <label htmlFor="selectMovieCategory" className="w-1/2 font-medium text-xl text-black"> Kategoria filmów: </label>
-      <Select id="selectMovieCategory" size="lg" color="purple" className="text-base">
-          <Option selected> Wszystkie </Option>
-          <Option> Dramat </Option>
-          <Option> Horror </Option>
-          <Option> Thriller </Option>
-          <Option> Komedia </Option>
-          <Option> Animacja </Option>
-          <Option> Fantasy </Option>
-      </Select>
+      <select defaultValue="Wszystkie" id="selectMovieCategory" className="select select-purple w-1/2 max-w-xs" onChange={onChange}  >
+          <option value="Wszystkie"> Wszystkie </option>
+          <option value="Dramat"> Dramat </option>
+          <option value="Horror"> Horror </option>
+          <option value="Thriller"> Thriller </option>
+          <option value="Komedia"> Komedia </option>
+          <option value="Animacja"> Animacja </option>
+          <option value="Fantasy"> Fantasy </option>
+      </select>
     </div>
   )
 }

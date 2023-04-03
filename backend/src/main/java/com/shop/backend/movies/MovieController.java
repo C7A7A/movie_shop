@@ -13,8 +13,9 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    // TODO: ResponseEntity
+
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<Movie> index() {
         return movieService.getMovies();
     }
