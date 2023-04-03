@@ -1,7 +1,7 @@
 import { Dialog, DialogHeader, DialogBody, Typography } from '@material-tailwind/react'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 
-export const MovieDetails = ({open, handleOpen, title, category,  production_year, price, poster, description}) => {
+export const MovieDetails = ({open, handleOpen, movie}) => {
   return (
     <>
       <Dialog size="lg" open={open} handler={handleOpen}>
@@ -22,29 +22,29 @@ export const MovieDetails = ({open, handleOpen, title, category,  production_yea
         <DialogBody divider>
           <div className='flex flex-row gap-2'>
             <div className='w-2/5 '>
-              <img src={`images/${poster}.jpg`} alt={title} />
+              <img src={`images/${movie.posterName}.jpg`} alt={movie.title} />
             </div>
 
             <div className="w-3/5 flex flex-col text-gray px-10">
               <div className="flex flex-col">
-                <Typography className="text-black font-bold text-2xl mb-2"> {title} </Typography>
-                <Typography className="text-lg"> {description} </Typography>
+                <Typography className="text-black font-bold text-2xl mb-2"> {movie.title} </Typography>
+                <Typography className="text-lg"> {movie.description} </Typography>
               </div>
 
               <div className="mt-10">
                 <div className="flex flex-row mb-2">
                   <Typography className="text-black font-bold text-lg w-1/3"> Kategoria: </Typography>
-                  <Typography className="text-lg"> {category} </Typography>
+                  <Typography className="text-lg"> {movie.category} </Typography>
                 </div>
 
                 <div className="flex flex-row mb-2">
                   <Typography className="text-black font-bold text-lg w-1/3"> Rok produkcji: </Typography>
-                  <Typography className="text-lg"> {production_year}</Typography>
+                  <Typography className="text-lg"> {movie.productionYear}</Typography>
                 </div>
 
                 <div className="flex flex-row mb-2">
                   <Typography className="text-black font-bold text-lg w-1/3"> Cena: </Typography>
-                  <Typography className="text-lg"> {price} PLN </Typography>
+                  <Typography className="text-lg"> {movie.price} PLN </Typography>
                 </div>
               </div>
               

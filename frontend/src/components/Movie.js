@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { Card, CardBody, CardFooter, CardHeader, Typography, Button } from '@material-tailwind/react'
 import { MovieDetails } from './MovieDetails';
 
-export const Movie = ({title, category,  production_year, price, poster, description}) => {
-  const [movieTitle, setMovieTitle] = useState(title);
+export const Movie = ({addMovieToCart, movie}) => {
+  const [movieTitle, setMovieTitle] = useState(movie.title);
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(!open)
   
@@ -21,7 +21,7 @@ export const Movie = ({title, category,  production_year, price, poster, descrip
       <Card className="w-[16rem] shadow-lg">
         <div className="hover:opacity-80 cursor-pointer" onClick={handleOpen}>
           <CardHeader floated={false} className="flex justify-center bg-gray-200">
-            <img src={`images/${poster}.jpg`} alt={movieTitle} className="w-[150px] h-[220px]" />
+            <img src={`images/${movie.posterName}.jpg`} alt={movieTitle} className="w-[150px] h-[220px]" />
           </CardHeader>
         </div>
 
@@ -35,23 +35,23 @@ export const Movie = ({title, category,  production_year, price, poster, descrip
           <div className="flex flex-col text-gray">
               <div className="flex flex-row">
                 <Typography className="text-black w-2/3"> Kategoria: </Typography>
-                <Typography> {category} </Typography>
+                <Typography> {movie.category} </Typography>
               </div>
 
               <div className="flex flex-row">
                 <Typography className="text-black w-2/3"> Rok produkcji: </Typography>
-                <Typography> {production_year} </Typography>
+                <Typography> {movie.productionYear} </Typography>
               </div>
 
               <div className="flex flex-row">
                 <Typography className="text-black w-2/3"> Cena: </Typography>
-                <Typography> {price} PLN </Typography>
+                <Typography> {movie.price} PLN </Typography>
               </div>
           </div>
         </CardBody>
 
         <CardFooter className="pt-0">
-          <Button size="lg" fullWidth={true} className="bg-purple-700 shadow-none hover:shadow-none hover:bg-purple-800"  >
+          <Button onClick={() => addMovieToCart(movie)} size="lg" fullWidth={true} className="bg-purple-700 shadow-none hover:shadow-none hover:bg-purple-800"  >
             Dodaj do koszyka
           </Button>
         </CardFooter>
@@ -60,12 +60,7 @@ export const Movie = ({title, category,  production_year, price, poster, descrip
       <MovieDetails 
         open={open}
         handleOpen={handleOpen}
-        title={title}
-        category={category}
-        production_year={production_year}
-        price={price}
-        poster={poster} 
-        description={description}
+        movie = {movie}
       />
     </>
    

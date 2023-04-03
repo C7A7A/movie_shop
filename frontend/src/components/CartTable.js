@@ -1,12 +1,15 @@
 import { Button, Typography } from '@material-tailwind/react'
 import React from 'react'
+import { useOutletContext } from 'react-router-dom'
 
 export const CartTable = () => {
+  const [cartMovies] = useOutletContext()
+  console.log(cartMovies)
+
   return (
     <div className="flex flex-col gap-4 w-full">
       <Typography className="font-semibold text-black text-4xl"> Koszyk </Typography>
       <hr />
-
       <div className="flex flex-col w-4/5 justify-center mx-auto">
         <div className="flex">
           <table className="table table-auto w-full">
@@ -23,21 +26,21 @@ export const CartTable = () => {
               <tr>
                 <td> Lśnienie </td>
                 <td> 25 PLN </td>
-                <td> <input type="number" min="0" value="2" /></td>
+                <td> <input type="number" min="0" /></td>
                 <td> 50 PLN </td>
               </tr>
 
               <tr>
                 <td> Skazani na Shawshank</td>
                 <td> 35 PLN </td>
-                <td> <input type="number" min="0" value="1" /> </td>
+                <td> <input type="number" min="0" /> </td>
                 <td> 35 PLN </td>
               </tr>
 
               <tr>
                 <td> Siedem </td>
                 <td> 50 PLN </td>
-                <td> <input type="number" min="0" value="10" /> </td>
+                <td> <input type="number" min="0" /> </td>
                 <td> 500 PLN </td>
               </tr>
 

@@ -4,7 +4,7 @@ export const CategoryDropdown = ({handleMovies}) => {
 
   const onChange = (event) => {
     const category = event.target.value
-    handleMovies(category.toUpperCase())
+    handleMovies(category)
   }
 
   return (
