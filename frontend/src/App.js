@@ -14,7 +14,10 @@ const headers = {
 export const App = () => {
   const [movies, setMovies] = useState([])
   const [displayMovies, setDisplayMovies] = useState([])
-  const [cartMovies, setCartMovies] = useState([])
+  const [cartMovies, setCartMovies] = useState({
+    'movies': [],
+    'amount': 0
+  })
 
   useEffect(() => {
     axios.get(moviesUrl, headers).then((response) => {
@@ -35,22 +38,65 @@ export const App = () => {
     }
   }
 
-  const addMovieToCart = (movie) => {
-    console.log("XDD")
-    // const movieToAdd = {
-    //   title: movie.title,
-    //   price: movie.price,
-    //   amount: 1
-    // }
+  const removeMovieFromCart = (movie) => {
+    const updatedMovies = cartMovies.movies.map(cartMovie => {
+      if (cartMovie.title === movie.title) {
+        return {
+          ...cartMovie,
+          amount: cartMovie.amount - 1
+        }
+      }
+      
+      return cartMovie
+    }).filter(cartMovie => cartMovie.amount > 0) // filter to remove movies that has 0 amount
 
-    // setCartMovies(cartMovies => [...cartMovies, movieToAdd])
+    setCartMovies({
+      movies: updatedMovies,
+      amount: cartMovies.amount - 1
+    })    
+  }
+
+  const addMovieToCart = (movie) => {
+    // Check if movie with the same title already exists in cart
+    const movieExists = cartMovies.movies.find((cartMovie => cartMovie.title === movie.title))
+   
+    // If movie exists -> find it in cart and increment amount
+    if (movieExists) {
+      const updatedMovies = cartMovies.movies.map(cartMovie => {
+        if (cartMovie.title === movie.title) {
+          return {
+            ...cartMovie,
+            amount: cartMovie.amount + 1
+          }
+        }
+        
+        return cartMovie
+      })
+
+      setCartMovies({
+        movies: updatedMovies,
+        amount: cartMovies.amount + 1
+      })
+
+    } else {
+      const movieToAdd = {
+        title: movie.title,
+        price: movie.price,
+        amount: 1
+      }
+  
+      setCartMovies({
+        movies: [...cartMovies.movies, movieToAdd],
+        amount: cartMovies.amount + 1
+      })
+    }
   }
 
   return (
     <div className="container bg-gray-50 mx-auto min-h-screen">
-      <StickyNavbar />
+      <StickyNavbar amount={cartMovies.amount} />
       <div className="p-10 h-full">
-        <Outlet context={[displayMovies, handleMovies, addMovieToCart, cartMovies]}/>
+        <Outlet context={[displayMovies, handleMovies, addMovieToCart, cartMovies.movies, addMovieToCart, removeMovieFromCart]}/>
       </div>
     </div>
   );

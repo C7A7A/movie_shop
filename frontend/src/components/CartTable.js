@@ -3,8 +3,36 @@ import React from 'react'
 import { useOutletContext } from 'react-router-dom'
 
 export const CartTable = () => {
-  const [cartMovies] = useOutletContext()
+  const contextValues = useOutletContext()
+  const cartMovies = contextValues[3]
+  const addMovieToCart = contextValues[4]
+  const removeMovieFromCart = contextValues[5]
+
   console.log(cartMovies)
+  
+  const handleChange = (actualValue, prevValue, movie) => {
+    // console.log("actual value: ", actualValue)
+    // console.log("prev value: ", prevValue)
+    if (actualValue > prevValue) {
+      addMovieToCart(movie)
+    } else {
+      removeMovieFromCart(movie)
+    }
+  }
+
+  var priceSum = 0
+  const listMovies = cartMovies.map((movie, index) => {
+    let moviePriceSum = movie.price * movie.amount
+    priceSum += moviePriceSum
+
+    return  <tr key={index}>
+              <td> {movie.title} </td>
+              <td> {movie.price} PLN </td>
+              <td> <input type="number" min='0' defaultValue={movie.amount} onChange={(e) => handleChange(e.target.value, movie.amount, movie)} className="cursor-default" /> </td>
+              <td> {moviePriceSum} PLN </td>
+            </tr>
+
+  })
 
   return (
     <div className="flex flex-col gap-4 w-full">
@@ -23,32 +51,13 @@ export const CartTable = () => {
             </thead>
 
             <tbody>
-              <tr>
-                <td> Lśnienie </td>
-                <td> 25 PLN </td>
-                <td> <input type="number" min="0" /></td>
-                <td> 50 PLN </td>
-              </tr>
-
-              <tr>
-                <td> Skazani na Shawshank</td>
-                <td> 35 PLN </td>
-                <td> <input type="number" min="0" /> </td>
-                <td> 35 PLN </td>
-              </tr>
-
-              <tr>
-                <td> Siedem </td>
-                <td> 50 PLN </td>
-                <td> <input type="number" min="0" /> </td>
-                <td> 500 PLN </td>
-              </tr>
+              {listMovies}
 
               <tr>
                 <td> </td>
                 <td> </td>
                 <td> </td>
-                <td> 585 PLN </td>
+                <td> {priceSum} PLN </td>
               </tr>
             </tbody>
           </table>
