@@ -5,18 +5,25 @@ import { useOutletContext } from 'react-router-dom'
 export const CartTable = () => {
   const contextValues = useOutletContext()
   const cartMovies = contextValues[3]
-  const addMovieToCart = contextValues[4]
-  const removeMovieFromCart = contextValues[5]
+  const addMoviesToCart = contextValues[2]
+  const removeMoviesFromCart = contextValues[4]
 
   console.log(cartMovies)
   
   const handleChange = (actualValue, prevValue, movie) => {
-    // console.log("actual value: ", actualValue)
-    // console.log("prev value: ", prevValue)
+    if (isNaN(actualValue)) return
+    if (actualValue < 0) return
+    if (actualValue === "") return
+
+    console.log("value: ", actualValue)
+    console.log("movie: ", movie)
+
+    const numberDifference = Math.abs(actualValue - prevValue)
+
     if (actualValue > prevValue) {
-      addMovieToCart(movie)
+      addMoviesToCart(movie, numberDifference)
     } else {
-      removeMovieFromCart(movie)
+      removeMoviesFromCart(movie, numberDifference)
     }
   }
 

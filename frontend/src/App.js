@@ -38,12 +38,12 @@ export const App = () => {
     }
   }
 
-  const removeMovieFromCart = (movie) => {
+  const removeMoviesFromCart = (movie, amount) => {
     const updatedMovies = cartMovies.movies.map(cartMovie => {
       if (cartMovie.title === movie.title) {
         return {
           ...cartMovie,
-          amount: cartMovie.amount - 1
+          amount: cartMovie.amount - amount
         }
       }
       
@@ -52,11 +52,11 @@ export const App = () => {
 
     setCartMovies({
       movies: updatedMovies,
-      amount: cartMovies.amount - 1
+      amount: cartMovies.amount - amount
     })    
   }
 
-  const addMovieToCart = (movie) => {
+  const addMoviesToCart = (movie, amount) => {
     // Check if movie with the same title already exists in cart
     const movieExists = cartMovies.movies.find((cartMovie => cartMovie.title === movie.title))
    
@@ -66,7 +66,7 @@ export const App = () => {
         if (cartMovie.title === movie.title) {
           return {
             ...cartMovie,
-            amount: cartMovie.amount + 1
+            amount: cartMovie.amount + amount
           }
         }
         
@@ -75,7 +75,7 @@ export const App = () => {
 
       setCartMovies({
         movies: updatedMovies,
-        amount: cartMovies.amount + 1
+        amount: cartMovies.amount + amount
       })
 
     } else {
@@ -96,7 +96,7 @@ export const App = () => {
     <div className="container bg-gray-50 mx-auto min-h-screen">
       <StickyNavbar amount={cartMovies.amount} />
       <div className="p-10 h-full">
-        <Outlet context={[displayMovies, handleMovies, addMovieToCart, cartMovies.movies, addMovieToCart, removeMovieFromCart]}/>
+        <Outlet context={[displayMovies, handleMovies, addMoviesToCart, cartMovies.movies, removeMoviesFromCart]}/>
       </div>
     </div>
   );

@@ -51,7 +51,7 @@ export const Movie = ({addMovieToCart, movie}) => {
         </CardBody>
 
         <CardFooter className="pt-0">
-          <Button onClick={() => addMovieToCart(movie)} size="lg" fullWidth={true} className="bg-purple-700 shadow-none hover:shadow-none hover:bg-purple-800"  >
+          <Button onClick={() => addMovieToCart(movie, 1)} size="lg" fullWidth={true} className="bg-purple-700 shadow-none hover:shadow-none hover:bg-purple-800"  >
             Dodaj do koszyka
           </Button>
         </CardFooter>
